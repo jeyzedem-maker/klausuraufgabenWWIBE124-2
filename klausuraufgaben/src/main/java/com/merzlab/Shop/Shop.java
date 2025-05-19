@@ -1,5 +1,6 @@
 package com.merzlab.Shop;
 
+import java.util.Map.Entry;
 import java.util.*;
 
 public record Shop<T extends Comparable<T>>(
@@ -16,9 +17,32 @@ public record Shop<T extends Comparable<T>>(
     }
 
     public Optional<T> getBestRatedProduct() {
-        return assortment.entrySet().stream()
-            .max(Comparator.comparingDouble(e -> e.getValue().stream().mapToInt(i -> i).average().orElse(0)))
-            .map(Map.Entry::getKey);
+       T bestRatedProduct = null;
+       double bestAvarageRating = 0;
+       
+       for (Entry<T, List<Integer>> entry : assortment.entrySet()) {
+            T product = entry.getKey();
+            List<Integer> ratings = entry.getValue();
+
+            double total = 0;
+            for (int rating : ratings){
+                total += rating;
+            }
+            double averageRating = total / ratings.size();
+
+            if (averageRating >= bestAvarageRating) {
+                bestAvarageRating = averageRating;
+                bestRatedProduct = product;
+                
+            }
+       }
+
+       return Optional.ofNullable(bestRatedProduct);
+       
+       /*
+        Optional<T> bestRatedProduct = Optional.empty();
+        return bestRatedProduct
+        */
     }
 
     public List<T> getAllProductsSortedByNaturalOrdering() {
