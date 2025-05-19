@@ -1,5 +1,9 @@
 package com.merzlab.Shop;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 
 public class ShopMain {
 
@@ -9,11 +13,13 @@ public class ShopMain {
         FastFood fastFood3 = new FastFood("Salad", FastFoodCategory.SALAD, 150, true);
         FastFood fastFood4 = new FastFood("Fries", FastFoodCategory.FRIES, 400, false);
 
+        List<FastFood> fastFood = new ArrayList<>();
         fastFood.add(fastFood1);
         fastFood.add(fastFood2);
         fastFood.add(fastFood3);
+        fastFood.add(fastFood4);
 
-        Collection.sort(fastFood);
+        Collections.sort(fastFood); // Make sure FastFood implements Comparable
         fastFood.forEach(System.out::println);
     }
 
