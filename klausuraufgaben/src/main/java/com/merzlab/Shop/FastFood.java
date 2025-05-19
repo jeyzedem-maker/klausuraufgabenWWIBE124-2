@@ -3,7 +3,7 @@ package com.merzlab.Shop;
 public record FastFood(
         String name,
         FastFoodCategory category,
-        int calories,
+        double calories,
         boolean vegetarian
 ) implements Comparable<FastFood> {
 
