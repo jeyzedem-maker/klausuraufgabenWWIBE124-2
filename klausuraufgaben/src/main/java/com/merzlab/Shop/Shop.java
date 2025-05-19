@@ -46,8 +46,21 @@ public record Shop<T extends Comparable<T>>(
     }
 
     public List<T> getAllProductsSortedByNaturalOrdering() {
+        // Sort the products in natural order
+        
         List<T> products = new ArrayList<>(assortment.keySet());
         Collections.sort(products);
         return products;
+        
+        // Variant:
+        /*
+        List<T> products = new ArrayList<>();
+
+        for (T product : assortment.keySet()) {
+            products.add(product);
+        }
+        Collections.sort(products);
+        return products;
+        */
     }
 }
